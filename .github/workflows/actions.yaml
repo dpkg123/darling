@@ -25,20 +25,14 @@ jobs:
 
     # see https://github.com/actions/virtual-environments/issues/2606#issuecomment-772683150
 
-    - name: Build DEBs
+    - name: Configure
       run: |
-        ./tools/debian/make-deb
-
-    - name: Move DEBs
+        mkdir out
+        cd out && CFLAGS="" CXXFLAGS="" CPPFLAGS="" LDFLAGS="" cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DDEBIAN_PACKAGING=ON -DJSC_UNIFIED_BUILD=ON -GNinja
+    - name: build
       run: |
-        mkdir dist && mv ../*.deb dist
-
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v4.1.0
-      with:
-        name: 'debs'
-        path: dist/
-
+        cd out && ninja -j8
+        
   build-dsc:
     runs-on: ubuntu-latest
     steps:
