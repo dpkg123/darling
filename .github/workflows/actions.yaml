@@ -6,6 +6,8 @@ jobs:
   build-deb:
     runs-on: ubuntu-22.04
     steps:
+    - name: Free up space
+      uses: rokibhasansagar/slimhub_actions@main
     - uses: actions/checkout@v4
 
     - name: Checkout submodules
@@ -19,8 +21,6 @@ jobs:
         sudo mk-build-deps -i -r -t "apt-get --no-install-recommends -y" debian/control
 
     # see https://github.com/actions/virtual-environments/issues/2606#issuecomment-772683150
-    - name: Free up space
-      uses: rokibhasansagar/slimhub_actions@main
 
     - name: Build DEBs
       run: |
