@@ -9,6 +9,9 @@ jobs:
     - name: Free up space
       uses: rokibhasansagar/slimhub_actions@main
     - uses: actions/checkout@v4
+      with:
+        repository: darlinghq/darling
+        fetch-depth: 0
 
     - name: Checkout submodules
       shell: bash
