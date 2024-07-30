@@ -51,10 +51,10 @@ PACKAGE_SUFFIXES = \
 
 override_dh_auto_configure:
 	mkdir debbuild -p
-	cd debbuild && CFLAGS="" CXXFLAGS="" CPPFLAGS="" LDFLAGS="" cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DDEBIAN_PACKAGING=ON -DJSC_UNIFIED_BUILD=ON
+	cd debbuild && CFLAGS="" CXXFLAGS="" CPPFLAGS="" LDFLAGS="" cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DDEBIAN_PACKAGING=ON -DJSC_UNIFIED_BUILD=ON -GNinja
 
 override_dh_auto_build:
-	cd debbuild && $(MAKE) -j$(shell nproc)
+	cd debbuild && ninja -j$(shell nproc)
 
 override_dh_auto_install:
 	cd debbuild; $(foreach INDEX,$(INDICES), \
