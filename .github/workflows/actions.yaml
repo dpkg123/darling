@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   build-deb:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@v4
 
@@ -20,8 +20,7 @@ jobs:
 
     # see https://github.com/actions/virtual-environments/issues/2606#issuecomment-772683150
     - name: Free up space
-      run: |
-        sudo rm -rf /usr/share/dotnet
+      uses: rokibhasansagar/slimhub_actions@main
 
     - name: Build DEBs
       run: |
