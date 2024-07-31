@@ -31,7 +31,7 @@ jobs:
         cd out && CFLAGS="" CXXFLAGS="" CPPFLAGS="" LDFLAGS="" cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DDEBIAN_PACKAGING=ON -DJSC_UNIFIED_BUILD=ON -GNinja
     - name: build
       run: |
-        cd out && ninja -j8
+        cd out && ninja -j8 -v
         
   build-dsc:
     runs-on: ubuntu-latest
