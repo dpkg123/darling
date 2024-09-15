@@ -28,10 +28,10 @@ jobs:
     - name: Configure
       run: |
         mkdir out
-        cd out && CFLAGS="" CXXFLAGS="" CPPFLAGS="" LDFLAGS="" cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DDEBIAN_PACKAGING=ON -DJSC_UNIFIED_BUILD=ON -GNinja
+        cd out && CFLAGS="" CXXFLAGS="" CPPFLAGS="" LDFLAGS="" cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DDEBIAN_PACKAGING=ON -DJSC_UNIFIED_BUILD=ON -GNinja
     - name: build
       run: |
-        cd out && ninja -j8 -v
+        cd out && ninja
         
   build-dsc:
     runs-on: ubuntu-latest
